@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بازیابی دسترسی به گوشی</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(135deg,#eef7ff,#fff);color:#17324d;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.card{width:min(460px,100%);background:#fff;border-radius:24px;padding:28px;box-shadow:0 12px 35px #17324d22}.logo{font-size:42px;text-align:center}.title{text-align:center;margin:8px 0 6px;font-size:25px}.sub{text-align:center;color:#64748b;line-height:1.8;margin:0 0 24px}.label{display:block;font-weight:700;margin:16px 0 8px}.input,.select{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:13px;font-size:16px;background:#fff;outline:none}.input:focus,.select:focus{border-color:#2583d8;box-shadow:0 0 0 3px #2583d822}.btn{width:100%;border:0;border-radius:13px;padding:15px;margin-top:22px;background:#1677c8;color:#fff;font-size:17px;font-weight:700;cursor:pointer}.btn:hover{background:#0f66ad}.result{display:none;margin-top:20px;padding:18px;border-radius:16px;background:#f0f8ff;line-height:1.9}.warning{font-size:13px;color:#64748b;margin-top:18px;line-height:1.8;text-align:center}.hidden{display:none}.back{display:block;text-align:center;margin-top:15px;color:#1677c8;text-decoration:none}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="logo">📱🔐</div>
+  <h1 class="title">بازیابی دسترسی به گوشی</h1>
+  <p class="sub">شماره تلفن و نوع قفل را وارد کنید تا راهنمای مناسب نمایش داده شود.</p>
+
+  <label class="label" for="phone">شماره تلفن</label>
+  <input class="input" id="phone" type="tel" inputmode="tel" placeholder="مثلاً 09123456789" autocomplete="tel">
+
+  <label class="label" for="lock">نوع قفل</label>
+  <select class="select" id="lock">
+    <option value="">انتخاب کنید</option>
+    <option value="pin">PIN</option>
+    <option value="pattern">الگو</option>
+    <option value="password">رمز عبور</option>
+    <option value="unknown">نمی‌دانم</option>
+  </select>
+
+  <button class="btn" onclick="showGuide()">تشخیص و راهنمایی</button>
+  <section class="result" id="result"></section>
+  <p class="warning">این صفحه قفل واقعی گوشی را باز یا رمز آن را استخراج نمی‌کند؛ فقط راهنمای بازیابی قانونی دسترسی را نمایش می‌دهد.</p>
+  <a class="back" href="index.html">بازگشت به مهر فرازان</a>
+</main>
+<script>
+function showGuide(){
+ const phone=document.getElementById('phone').value.trim();
+ const lock=document.getElementById('lock').value;
+ const result=document.getElementById('result');
+ if(!phone){alert('لطفاً شماره تلفن را وارد کنید.');return;}
+ if(!lock){alert('لطفاً نوع قفل را انتخاب کنید.');return;}
+ const guides={
+  pin:'قفل PIN انتخاب شده است. برای بازیابی دسترسی، از روش رسمی حساب سازنده یا گزینه‌های بازیابی خود گوشی استفاده کنید. اگر بازیابی ممکن نبود، مرکز خدمات مجاز می‌تواند مالکیت دستگاه را بررسی کند.',
+  pattern:'قفل الگو انتخاب شده است. از روش رسمی بازیابی حساب یا پشتیبانی سازنده استفاده کنید. از وارد کردن حدس‌های متعدد خودداری کنید تا دستگاه بیشتر محدود نشود.',
+  password:'قفل رمز عبور انتخاب شده است. از روش رسمی بازیابی حساب/دستگاه یا پشتیبانی سازنده استفاده کنید. این سایت رمز عبور را مشاهده یا استخراج نمی‌کند.',
+  unknown:'نوع قفل مشخص نیست. نوع قفل را نمی‌توان از روی شماره تلفن تشخیص داد. صفحه قفل خود گوشی یا راهنمای رسمی سازنده را بررسی کنید؛ در صورت نیاز، مرکز خدمات مجاز می‌تواند کمک کند.'
+ };
+ result.innerHTML='<strong>نتیجه:</strong><br>'+guides[lock];
+ result.style.display='block';
+}
+</script>
+</body>
+</html>
